@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- [ Main Content ] start -->
+<div class="pc-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Dashboard sale</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Bosh sahifa</a></li>
+                            <li class="breadcrumb-item">Mahsulotni tahrirlash</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Mahsulotni tahrirlash</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST"  enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mahsulot nomi</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name" value="{{ product.name }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mahsulot haqida</label>
+                                <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="description">{{ product.description }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mahsulot narxi</label>
+                                <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="price" value="{{ product.price }}">
+
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Mahsulot rasmi</label>
+                                <input type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="image">
+                                <img src="" alt="" style="width: 100px; height: 100px;">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Tahrirlash</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ Main Content ] end -->
+    </div>
+</div>
+<!-- [ Main Content ] end -->
+{% endblock %}
+

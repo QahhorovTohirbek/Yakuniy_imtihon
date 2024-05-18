@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <title>Komyuter do'koni</title>
+ 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/x-icon">
+
+    <!-- font css -->
+    <link rel="stylesheet" href="{% static 'fonts/font-awsome-pro/css/pro.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/feather.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/fontawesome.css' %}">
+
+    <!-- vendor css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/customizer.css' %}">
+
+    <style>
+        .logout-icon {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+    </style>
+
+</head>
+
+<body class="">
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
+    <!-- [ Pre-loader ] End -->
+    <!-- [ Mobile header ] start -->
+    <div class="pc-mob-header pc-header">
+        <div class="pcm-logo">
+            <img src="{% static 'images/logo.svg' %}" alt="" class="logo logo-lg">
+        </div>
+        <div class="pcm-toolbar">
+            <a href="#!" class="pc-head-link" id="mobile-collapse">
+                <div class="hamburger hamburger--arrowturn">
+                    <div class="hamburger-box">
+                        <div class="hamburger-inner"></div>
+                    </div>
+                </div>
+            </a>
+            <a href="#!" class="pc-head-link" id="headerdrp-collapse">
+                <i data-feather="align-right"></i>
+            </a>
+            <a href="#!" class="pc-head-link" id="header-collapse">
+                <i data-feather="more-vertical"></i>
+            </a>
+        </div>
+    </div>
+    <!-- [ Mobile header ] End -->
+
+    <!-- [ navigation menu ] start -->
+    <nav class="pc-sidebar ">
+        <div class="navbar-wrapper">
+            <div class="m-header">
+                <a href="index.html" class="b-brand">
+                    <!-- ========   change your logo hear   ============ -->
+                    <img src="{% static 'images/logo.svg' %}" alt="" class="logo logo-lg">
+                    <img src="{% static 'images/logo-sm.svg' %}" alt="" class="logo logo-sm">
+                </a>
+            </div>
+            <div class="navbar-content">
+                <ul class="pc-navbar">
+                    <li class="pc-item pc-caption">
+                        <label>Navigation</label>
+                    </li>
+                    <li class="pc-item">
+                        <a href="{% url 'index' %}" class="pc-link "><span class="pc-micon"><i data-feather="home"></i></span><span class="pc-mtext">Bosh sahifa</span></a>
+                    </li>
+                    <li class="pc-item pc-hasmenu">
+                        <a href="#!" class="pc-link "><span class="pc-micon"><i data-feather="box"></i></span><span class="pc-mtext">Kategoriya</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
+                        <ul class="pc-submenu">
+                            <li class="pc-item"><a class="pc-link" href="{% url 'category_create' %}">Yaratish</a></li>
+                            <li class="pc-item"><a class="pc-link" href="{% url 'category_list' %}">Ro'yxati</a></li>
+                        </ul>
+                    </li>
+                    <li class="pc-item pc-hasmenu">
+                        <a href="#!" class="pc-link "><span class="pc-micon"><i data-feather="box"></i></span><span class="pc-mtext">Mahsulot</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
+                        <ul class="pc-submenu">
+                            <li class="pc-item"><a class="pc-link" href="{% url 'product_create' %}">Yaratish</a></li>
+                            <li class="pc-item"><a class="pc-link" href="{% url 'product_list' %}">Ro'yxati</a></li>
+                        </ul>
+                    </li>
+                    <li class="pc-item pc-hasmenu">
+                        <a href="#!" class="pc-link "><span class="pc-micon"><i data-feather="box"></i></span><span class="pc-mtext">Mahsulotlar kirimi</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
+                        <ul class="pc-submenu">
+                            <li class="pc-item"><a class="pc-link" href="{% url 'entry_create' %}">Yaratish</a></li>
+                            <li class="pc-item"><a class="pc-link" href="{% url 'entry_list' %}">Ro'yxati</a></li>
+                        </ul>
+                    </li>
+                    <li class="pc-item pc-hasmenu">
+                        <a href="#!" class="pc-link "><span class="pc-micon"><i data-feather="box"></i></span><span class="pc-mtext">Mahsulotlar chiqimi</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
+                        <ul class="pc-submenu">
+                            <li class="pc-item"><a class="pc-link" href="{% url 'outery_create' %}">Yaratish</a></li>
+                            <li class="pc-item"><a class="pc-link" href="{% url 'outery_list' %}">Ro'yxati</a></li>
+                        </ul>
+                    </li>
+                    <li class="pc-item pc-hasmenu">
+                        <a href="#!" class="pc-link "><span class="pc-micon"><i data-feather="box"></i></span><span class="pc-mtext">Qaytarilgan tovarlar</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span></a>
+                        <ul class="pc-submenu">
+                            <li class="pc-item"><a class="pc-link" href="{% url 'return_create' %}">Yaratish</a></li>
+                            <li class="pc-item"><a class="pc-link" href="{% url 'return_list' %}">Ro'yxati</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- [ navigation menu ] end -->
+    <!-- [ Header ] start -->
+    <header class="pc-header ">
+        <div class="header-wrapper">
+            <div class="header-left">
+                <a href="#" class="pc-head-link" id="header-collapse">
+                    <i data-feather="menu"></i>
+                </a>
+            </div>
+            <div class="header-right">
+                <a class="logout-icon" href="{% url 'log_out' %}">
+                    <i data-feather="log-out"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    <!-- [ Header ] end -->
+    {% block content %}
+    {% endblock %}
+
+<script src="{% static 'js/vendor-all.min.js' %}"></script>
+<script src="{% static 'js/plugins/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/plugins/feather.min.js' %}"></script>
+<script src="{% static 'js/pcoded.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="{% static 'js/plugins/clipboard.min.js' %}"></script>
+<script src="{% static 'js/uikit.min.js' %}"></script>
+
+<!-- Apex Chart -->
+<script src="{% static 'js/plugins/apexcharts.min.js' %}"></script>
+
+<!-- custom-chart js -->
+<script src="{% static 'js/pages/dashboard-sale.js' %}"></script>
+</body>
+
+</html>

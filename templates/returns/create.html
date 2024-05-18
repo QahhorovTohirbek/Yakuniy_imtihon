@@ -14,7 +14,7 @@
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Bosh sahifa</a></li>
-                            <li class="breadcrumb-item">Qaytarilgan mahsulotlar</li>
+                            <li class="breadcrumb-item">Qaytarilgan mahsulotlar yaratish</li>
                         </ul>
                     </div>
                 </div>
@@ -22,34 +22,49 @@
         </div>
         <!-- [ breadcrumb ] end -->
         <!-- [ Main Content ] start -->
-        <div class="row">
+    <div class="row">
 
-            <div class="col-md-12">
-                <!-- [ Hover-table ] start -->
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Qaytarilgan mahsulotlar</h5>
-                    </div>
-                    <div class="card-block">
-                        <div class="dt-responsive table-responsive">
-                            <table id="simpletable" class="table table-striped table-bordered nowrap">
-
-                                <tbody>
-                                    {% for re in returns %}
-                                    <tr>
-                                        <td>{{ re.outery.product.name }}</td>
-                                        <td>{{ re.quantity }}</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Qaytarilgan mahsulotlar yaratish</h5>
                 </div>
-                
-            
+                <div class="card-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="">Mahsulot nomi</label>
+                            <select name="product_id" class="form-control">
+                                {% for product in products %}
+                                <option value="{{ product.id }}">{{ product.outery.product.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Mahsulot miqdori</label>
+                            <input type="number" name="quantity" class="form-control">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Saqlash</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<!-- [ Main Content ] end -->
-{% endblock %}
+    <!-- [ Main Content ] end -->
+    </div>
+    <!-- [ Main Content ] end -->
+    </div>
+    <!-- [ Main Content ] end -->
+    </div>
+    <!-- [ Main Content ] end -->
+    </div>
+    <!-- [ Main Content ] end -->
+    </div>
+    <!-- [ Main Content ] end -->
+                        
+
+    </div>
+    <!-- [ Main Content ] end -->
+    {% endblock %}
 

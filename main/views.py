@@ -103,30 +103,8 @@ def product_create(request):
 
 @login_required(login_url='log_in')
 def product_list(request):
-    categories = models.Category.objects.all()
-    category_code = request.GET.get('code')
-
-    filter_items = {}
-    if category_code:
-        filter_items['product__category__code'] = category_code
-
-    for key, value in request.GET.items():
-        if value and not value == '0':
-            if key == 'start_date':
-                key = 'created_at__gte'
-            elif key == 'end_date':
-                key = 'created_at__lte'
-            elif key == 'name':
-                key = 'product__name__icontains'
-            filter_items[key] = value
-
-    products = models.Product.objects.filter(**filter_items)
-    context = {
-        'products': products,
-        'categories': categories,
-        'category_code': category_code,
-    }
-    return render(request, 'product/list.html', context)
+    products = models.Product.objects.all()
+    return render(request, 'product/list.html', {'products': products})
     
 
 @login_required(login_url='log_in')
@@ -191,132 +169,66 @@ def product_delete(request, code):
 
 
 #---------Entery---------   
-
 @login_required(login_url='log_in')
 def entry_create(request):
-    category = models.Category.objects.all()
     products = models.Product.objects.all()
-    context = {
-        'category': category,
-        'products': products,
-    }
     if request.method == 'POST':
-        models.Entery.objects.create(
-            product=models.Product.objects.get(id=request.POST.get('product')),
-            quantity=request.POST.get('quantity'),
-)
+        product = models.Product.objects.get(code=request.POST.get('product'))
+        quantity = request.POST.get('quantity')
+        enter_product = models.Entery.objects.create(
+            product=product,
+            quantity=quantity,
+        )
         return redirect('entry_list')
-    return render(request, 'entry/create.html', context)
+    return render(request, 'entry/create.html', {'products': products})
 
 
 @login_required(login_url='log_in')
 def entry_list(request):
-    category = models.Category.objects.all()
-    products = models.Product.objects.filter(category=category)
-    category_code = request.GET.get('category_code')
-    if category_code:
-        filter_items = {}
-        for key, value in request.GET.items():
-            if value and not value == '0':
-                if key == 'start_date':
-                    key = 'date__gte'
-                elif key == 'end_date':    
-                    key = 'date__lte'
-                elif key == 'name':
-                    key = 'product__name__icontains'
-                filter_items[key] = value
-
-        enteries = models.Entery.objects.filter(**filter_items)
-    context = {
-        'products': products,
-        'enteries': enteries,
-        'category': category,
-        'category_code': category_code,
-    }
-    return render(request, 'entry/list.html', context)
+    enter_products = models.Entery.objects.all()
+    return render(request, 'entry/list.html', {'enter_products': enter_products})
     
 
 @login_required(login_url='log_in')
 def outery_create(request):
-    category = models.Category.objects.all()
     products = models.Product.objects.all()
-    context = {
-        'category': category,
-        'products': products,
-    }
     if request.method == 'POST':
-        models.Outery.objects.create(
-            product=models.Product.objects.get(id=request.POST.get('product')),
-            quantity=request.POST.get('quantity'),
-            date=request.POST.get('date'),
-)
+        product = models.Product.objects.get(code=request.POST.get('product'))
+        quantity = request.POST.get('quantity')
+        outery_product = models.Outery.objects.create(
+            product=product,
+            quantity=quantity,
+        )
         return redirect('outery_list')
     
-    return render(request, 'outery/create.html', context)
+    return render(request, 'outery/create.html', {'products': products})
 
 
 @login_required(login_url='log_in')
 def outery_list(request):
-    category = models.Category.objects.all()
-    product = models.Product.objects.filter(category=category)
-    outery = models.Outery.objects.filter(product=product)
-
-    category_code = request.GET.get('category_code')
-
-    if category_code:
-        filter_items = {}
-        for key, value in request.GET.items():
-            if value and not value == '0':
-                if key == 'start_date':
-                    key = 'date__gte'
-                elif key == 'end_date':    
-                    key = 'date__lte'
-                elif key == 'name':
-                    key = 'product__name__icontains'
-                filter_items[key] = value
-
-        outery = models.Outery.objects.filter(**filter_items)
-        context = {
-            'product': product,
-            'outery': outery,
-            'category': category,
-            'category_code': category_code,
-        }
-        return render(request, 'outery/list.html', context)
-    
-    return render(request, 'outery/list.html', context)
+    outery_products = models.Outery.objects.all()
+    return render(request, 'outery/list.html', {'outery_products': outery_products})
 
 
 @login_required(login_url='log_in')
 def return_create(request):
-    category = models.Category.objects.all()
-    outery = models.Outery.objects.all()
-    context = {
-        'category': category,
-        'outery': outery,}
+    products = models.Outery.objects.all()
     if request.method == 'POST':
-        models.Return.objects.create(
-            outery = models.Outery.objects.get(id=request.POST.get('outery')),
-            quantity=request.POST.get('quantity'),
-)
+        product = models.Outery.objects.get(code=request.POST.get('product'))
+        quantity = request.POST.get('quantity')
+        return_product = models.Return.objects.create(
+            product=product,
+            quantity=quantity,
+        )
         return redirect('return_list')
     
-    return render(request, 'returns/create.html', context)
+    return render(request, 'returns/create.html', {'products': products})
 
 
 @login_required(login_url='log_in')
 def return_list(request):
-    category = models.Category.objects.all()
-    product = models.Product.objects.filter(category=category)
-    returns = models.Return.objects.filter(product=product)
-
-    context = {
-        'product': product,
-        'returns': returns,
-        'category': category,
-    }
-
-    return render(request, 'returns/list.html', context)
+    return_products = models.Return.objects.all()
+    return render(request, 'returns/list.html', {'return_products': return_products})
 
 
 

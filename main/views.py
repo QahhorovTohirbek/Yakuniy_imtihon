@@ -212,17 +212,17 @@ def outery_list(request):
 
 @login_required(login_url='log_in')
 def return_create(request):
-    products = models.Outery.objects.all()
+    outery = models.Outery.objects.all()
     if request.method == 'POST':
-        product = models.Outery.objects.get(code=request.POST.get('product'))
+        outer = models.Outery.objects.get(code=request.POST.get('outery'))
         quantity = request.POST.get('quantity')
         return_product = models.Return.objects.create(
-            product=product,
+            outery=outer,
             quantity=quantity,
         )
         return redirect('return_list')
     
-    return render(request, 'returns/create.html', {'products': products})
+    return render(request, 'returns/create.html', {'outeries': outery})
 
 
 @login_required(login_url='log_in')

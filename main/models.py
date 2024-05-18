@@ -78,9 +78,9 @@ class Entery(CodeGenerate):
     def save(self, *args, **kwargs):
         if self.pk:
             object = Entery.objects.get(id=self.id)
-            self.product.quantity -= object.quantity
+            self.product.quantity -= int(object.quantity)
         
-        self.product.quantity += self.quantity
+        self.product.quantity += int(self.quantity)
         self.product.save()
         super(Entery, self).save(*args, **kwargs)
 
@@ -98,9 +98,9 @@ class Outery(CodeGenerate):
     def save(self, *args, **kwargs):
         if self.pk:
             object = Outery.objects.get(id=self.id)
-            self.product.quantity += object.quantity
+            self.product.quantity += int(object.quantity)
 
-        self.product.quantity -= self.quantity
+        self.product.quantity -= int(self.quantity)
         self.product.save()
         super(Outery, self).save(*args, **kwargs)
 
@@ -118,8 +118,8 @@ class Return(CodeGenerate):
     def save(self, *args, **kwargs):
         if self.pk:
             object = Return.objects.get(id=self.id)
-            self.outery.product.quantity -= object.quantity
+            self.outery.product.quantity -= int(object.quantity)
             
-        self.outery.product.quantity += self.quantity
+        self.outery.product.quantity += int(self.quantity)
         self.outery.product.save()
         super(Return, self).save(*args, **kwargs)

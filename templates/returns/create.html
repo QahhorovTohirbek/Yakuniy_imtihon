@@ -34,9 +34,9 @@
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="">Mahsulot nomi</label>
-                            <select name="product_id" class="form-control">
-                                {% for product in products %}
-                                <option value="{{ product.id }}">{{ product.outery.product.name }}</option>
+                            <select name="outery" class="form-control">
+                                {% for outer in outeries %}
+                                <option value="{{ outer.code }}">{{ outer.product.name }}</option>
                                 {% endfor %}
                             </select>
                         </div>

@@ -36,7 +36,7 @@
                                 <label for="exampleInputEmail1">Mahsulotlar </label>
                                 <select class="form-control" name="product">
                                     {% for product in products %}
-                                    <option value="{{ product.id }}">{{ product.name }}</option>
+                                    <option value="{{ product.code }}">{{ product.name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
